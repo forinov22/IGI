@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Orders Statistics{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <h1 class="display-4">Total Orders: {{ total_orders }}</h1>
+        <h1 class="display-4">Total Revenue: ${{ total_revenue }}</h1>
+
+        <img src="{% url 'order_status_distribution' %}" alt="img">
+    </div>
+
+{% endblock %}

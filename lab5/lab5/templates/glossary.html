@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Glossary{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Glossary</h1>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Term</th>
+                <th scope="col">Definition</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.term }}</td>
+                    <td>{{ entry.definition }}</td>
+                    <td>{{ entry.date_added|date:"d-m-Y" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Employee List</h1>
+    <div class="row">
+        {% for employee in employees %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if employee.image %}
+                        <img src="{{ employee.image.url }}" class="card-img-top" alt="{{ employee.user.username }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ employee.user.username }}</h5>
+                        <p class="card-text"><strong>Email:</strong> {{ employee.email }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ employee.phone }}</p>
+                        <p class="card-text"><strong>Description:</strong> {{ employee.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

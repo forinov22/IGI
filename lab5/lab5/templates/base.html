@@ -1,0 +1,69 @@
+{% load static %}
+{% load tz %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Confectionery{% endblock %}</title>
+    <!-- Add your CSS links, meta tags, etc. -->
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<!-- Navbar -->
+<div class="p-2">
+    <header class="container-fluid py-3 mb-4 d-flex align-items-center justify-content-between border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            Current Time:
+            {% localtime off %}
+                {{ current_time }}
+            {% endlocaltime %}
+        </div>
+        <ul class="nav col-12 col-sm-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'products' %}" class="nav-link px-2 link-secondary">Home</a></li>
+
+            {% if is_customer %}
+                <li><a href="{% url 'cart' %}" class="nav-link px-2">Cart</a></li>
+                <li><a href="{% url 'customer_orders' %}" class="nav-link px-2">Orders</a></li>
+            {% endif %}
+
+            {% if is_employee %}
+                <li><a href="{% url 'manage_orders' %}" class="nav-link px-2">Manage Orders</a></li>
+                <li><a href="{% url 'orders_statistics' %}" class="nav-link px-2">Orders Statistics</a></li>
+            {% endif %}
+
+            <li><a href="{% url 'coupons' %}" class="nav-link px-2">Coupons</a></li>
+            <li><a href="{% url 'news' %}" class="nav-link px-2">News</a></li>
+            <li><a href="{% url 'reviews' %}" class="nav-link px-2">Reviews</a></li>
+            <li><a href="{% url 'contacts' %}" class="nav-link px-2">Contacts</a></li>
+            <li><a href="{% url 'glossary' %}" class="nav-link px-2">Glossary</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link px-2">About</a></li>
+
+        </ul>
+        <div class="">
+            {% if user.is_authenticated %}
+                <div>
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">Welcome, {{ user.username }}</div>
+                        <a class="btn btn-outline-dark" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+
+
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-primary">Sign-up</a>
+            {% endif %}
+        </div>
+    </header>
+</div>
+
+<!-- Main content -->
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Reviews{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Reviews</h1>
+        {% if is_authenticated %}
+            <a href="{% url 'add_review' %}" class="btn btn-primary mb-3">Add Review</a>
+        {% endif %}
+        <ul class="list-group">
+            {% for review in reviews %}
+                <li class="list-group-item">
+                    <h5>{{ review.title }}</h5>
+                    <p>{{ review.review }}</p>
+                    <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                    <p><small>Reviewed on {{ review.date }}</small></p>
+                    <p><small>Reviewed by {{ review.user.user.username }}</small></p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

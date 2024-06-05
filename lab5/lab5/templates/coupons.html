@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Coupons{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <h1>Available Coupons</h1>
+        {% for coupon in coupons %}
+            <div class="coupon">
+                <code>{{ coupon.code }}</code><br>
+                <span class="discount">{{ coupon.discount }}% off</span><br>
+                <span class="expiration">Expires on: {{ coupon.expiration_date }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
