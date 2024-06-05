@@ -1,0 +1,4 @@
+first_name,last_name,age,needs_accommodation,work_experience,degree,language
+John,Doe,20,True,3,Bachelor's,English
+Jane,Smith,22,False,1,Technical School,French
+Alice,Johnson,21,True,0,Master's,Spanish
