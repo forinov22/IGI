@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./db/:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_PASSWORD: 2209
+      POSTGRES_USER: postgres
+      POSTGRES_DB: music-platform
+    ports:
+      - 5432:5432
+  musicplatform.api:
+    image: egor4ik/musicplatform.api
+    ports:
+      - 8080:8080
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    depends_on:
+      - db
